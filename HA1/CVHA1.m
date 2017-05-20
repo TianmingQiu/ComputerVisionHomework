@@ -1,5 +1,5 @@
-%  Gruppennummer:
-%  Gruppenmitglieder:
+%  Gruppennummer:M06
+%  Gruppenmitglieder:Hao, Wenhan & Qiu, Tianming & Shen, Fengyi & Xu, Hao & Xu, Jiachen
 
 %% Hausaufgabe 1
 %  Einlesen und Konvertieren von Bildern sowie Bestimmung von 
@@ -11,13 +11,14 @@
 
 
 %% Bild laden
-%  Image = imread('szene.jpg');
-%  IGray = rgb_to_gray(Image);
+  Image = imread('szene.jpg');
+  IGray = rgb_to_gray(Image);
 
 
 
 
 %% Harris-Merkmale berechnen
-%  tic;
-%  Merkmale = harris_detektor(IGray,'do_plot',true);
-%  toc;
+  tic;
+  %Merkmale = harris_detektor(IGray,'do_plot',true);
+  Merkmale = harris_detektor(IGray);
+  toc;

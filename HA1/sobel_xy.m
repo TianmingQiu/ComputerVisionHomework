@@ -24,7 +24,7 @@ for i = 2:m-1
     end
 end
 
-Fx = Im_out(2:end,2:end);
+Fx = Im_out(2:end-1,2:end-1);
 
 Im_out = 0*Im_out;
 
@@ -37,6 +37,6 @@ for i = 2:m-1
         end
     end
 end
-Fy = Im_out(2:end,2:end);
+Fy = Im_out(2:end-1,2:end-1);
 end
 

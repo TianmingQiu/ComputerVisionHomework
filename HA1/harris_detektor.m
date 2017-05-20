@@ -13,10 +13,10 @@ I(end,:) = I(end-1,:);
 I(:,1) = I(:,2);
 I(:,end) = I(:, end-1);
 [Ix,Iy] = sobel_xy(Image);
-%fmask1= fspecial('gaussian',[15,1],15/5);
-%%　set the valuue of parameters
+
+%set the value of parameters
 k = 0.05;
-tau = 0.5;
+tau = 9e7;
 
 w=fspecial('gaussian',3,3);
 Ixx=conv2(Ix.*Ix,w,'same');
@@ -29,6 +29,9 @@ H = (Ixx .* Iyy - Ixy.^2) - k * (Ixx + Iyy).^2;
 
 [Merkmale(:,1), Merkmale(:,2)] = find(H > tau); 
 
+imshow(Image);
+hold on;
+plot(Merkmale(:,2), Merkmale(:,1),'g+');
 
    
 end
