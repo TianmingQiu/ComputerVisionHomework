@@ -18,7 +18,7 @@ close all ;
 
 %% Harris-Merkmale berechnen
   tic;
-  Merkmale = harris_detektor(IGray,'do_plot',true,3 ,0.05 , 9e7,20 ,5 ,200,200);% L?sung f?r Problem 2.(1)
+  %Merkmale = harris_detektor(IGray,'do_plot',true,3 ,0.05 , 9e7);% L?sung f?r Problem 2.(1)
 
   Merkmale_advanved = harris_detektor_advanced(IGray,'do_plot',true,3 ,0.05 , 9e5,20 ,5 ,200,200);% L?sung f?r Problem 2.(1)
 
