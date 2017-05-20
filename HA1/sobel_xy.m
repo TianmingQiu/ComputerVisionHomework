@@ -7,16 +7,16 @@ function [Fx,Fy] = sobel_xy(Image)
 
 
 I = Image;
-%define the sobel mask
+% Definition der Sobel-Filter
 sobel_x = [1 0 -1; 2 0 -2; 1 0 -1];
 sobel_y = [1 2 1; 0 0 0; -1 -2 -1];
 
 
-Fx1 = conv2(sobel_x, I ) ;
-Fy1 = conv2(sobel_y, I ) ;
+Fx1 = conv2(sobel_x, I ) ; % Horizontale Richtung
+Fy1 = conv2(sobel_y, I ) ; % Senkrechte Richtung
 
 
-Fx = Fx1(2:end-1,2:end-1) ;
-Fy = Fy1(2:end-1,2:end-1) ;
+Fx = Fx1(2:end-1,2:end-1) ; % Korrigieren die Dimension
+Fy = Fy1(2:end-1,2:end-1) ; % Korrigieren die Dimension
 end
 
