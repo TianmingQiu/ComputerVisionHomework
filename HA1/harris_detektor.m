@@ -17,10 +17,7 @@ function   Merkmale = harris_detektor(Image,varargin)
     global segment_length;
     global k;
     global tau;
-    global min_dist; %minimum distance between two feature  point
-    global N; % maximum number of feature point in one tile
-    global length_blk ;  
-    global height_blk ;
+
 
     
     
