@@ -18,12 +18,12 @@ close all ;
 
 %% Harris-Merkmale berechnen
   tic;
-  %Merkmale = harris_detektor(IGray,'do_plot',true,3 ,0.05 , 9e7);% L?sung f?r Problem 2.(1)
+  %Merkmale = harris_detektor(IGray,'do_plot',true,15 ,0.05 , 9e7);% L?sung f?r Problem 2.(1)
 
-  Merkmale_advanved = harris_detektor_advanced(IGray,'do_plot',true,3 ,0.05 , 9e5,20 ,5 ,200,200);% L?sung f?r Problem 2.(1)
+  Merkmale_advanved = harris_detektor_advanced(IGray,'do_plot',true,15 ,0.05 , 9e5,20 ,5 ,200,200);% L?sung f?r Problem 2.(1)
 
   % Input argument order: image ,'do_plot', true or false , segment_length , k , tau ,min_dist , N ,tile_size 
-  % Otherwise default setting: image ,'do_plot', true , 3 , 0.05 , 9e5 ,20 , 5 ,200(square) or 200,100(rectangle);
+  % Otherwise default setting: image ,'do_plot', true , 15 , 0.05 , 9e5 ,20 , 5 ,200(square) or 200,100(rectangle);
 
 
   toc;
