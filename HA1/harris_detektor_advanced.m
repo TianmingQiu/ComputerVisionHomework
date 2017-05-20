@@ -2,7 +2,7 @@ function   Merkmale = harris_detektor_advanced(Image,varargin)
 % In dieser Funktion soll der Harris-Detektor implementiert werden, der
 % Merkmalspunkte aus dem Bild extrahiert
     flag = 0 ; 
-
+% To judge whether to display the processed image.
     if (varargin{1} == 'do_plot')
         if (varargin{2} == true)
             flag = 1 ;
@@ -23,7 +23,7 @@ function   Merkmale = harris_detektor_advanced(Image,varargin)
     
  % Assign default argument or assign the input argument   
     if (nargin == 3)
-        segment_length = 3 ;
+        segment_length = 15 ;
         k = 0.05 ;
         tau = 9e5 ;
         min_dist = 20 ;
@@ -65,6 +65,7 @@ function   Merkmale = harris_detektor_advanced(Image,varargin)
     [Ix,Iy] = sobel_xy(I);
     
     %Use the Gaussian distribution as weight parameter 
+    % And also use convolution to get desired G matrix
     w=fspecial('gaussian',segment_length,segment_length);
     Ixx=conv2(Ix.*Ix,w,'same');
     Ixy=conv2(Ix.*Iy,w,'same');
