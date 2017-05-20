@@ -25,24 +25,12 @@ function   Merkmale = harris_detektor(Image,varargin)
         segment_length = 3 ;
         k = 0.05 ;
         tau = 9e7 ;
-        min_dist = 20 ;
-        N = 5 ;
-        length_blk = 200 ;
-        height_blk = 200 ;
         
     else
         segment_length = varargin{3} ;
         k = varargin{4} ;
         tau = varargin{5} ;
-        min_dist = varargin{6} ;
-        N = varargin{7} ;
-        if (nargin == 9)
-            length_blk = varargin{8} ;
-            height_blk = varargin{8} ;
-        elseif (nargin == 10)
-            length_blk = varargin{8} ;
-            height_blk = varargin{9} ;           
-        end;
+
     end;
     [m,n] = size(Image) ;
 
