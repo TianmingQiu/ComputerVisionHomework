@@ -1,5 +1,5 @@
-%  Gruppennummer:
-%  Gruppenmitglieder:
+%  Gruppennummer:M06
+%  Gruppenmitglieder:Hao, Wenhan & Qiu, Tianming & Shen, Fengyi & Xu, Hao & Xu, Jiachen
 
 %% Hausaufgabe 2
 %  Bestimmung von Punktkorrespondenzen zwischen Merkmalspunkten einer Stereo
@@ -18,18 +18,16 @@ Image2 = imread('szeneR.jpg');
 IGray2 = rgb_to_gray(Image2);
 
 %% Harris-Merkmale berechnen
- Merkmale1 = harris_detektor(IGray1,'segment_length',9,'k',0.05,'min_dist',50,'N',20,'do_plot',false);
+Merkmale1 = harris_detektor(IGray1,'segment_length',9,'k',0.05,'min_dist',50,'N',20,'do_plot',false);
 Merkmale2 = harris_detektor(IGray2,'segment_length',9,'k',0.05,'min_dist',50,'N',20,'do_plot',false);
-% subplot(121)
-% imshow(Image1);
-% hold on;
-% plot(Merkmale1(1,:), Merkmale1(2,:),'gs');
-% subplot(122)
-% imshow(Image2);
-% hold on;
-% plot(Merkmale2(1,:), Merkmale2(2,:),'gs');
 
 
 %% Korrespondenzschätzung
-% Korrespondenzen = punkt_korrespondenzen(IGray1,IGray2,Merkmale1,Merkmale2,25,0.95,1);
-daan(IGray1,IGray2,Merkmale1,Merkmale2,25,0.95,true);
+t1 = clock;
+Korrespondenzen = punkt_korrespondenzen(IGray1,IGray2,Merkmale1,Merkmale2,'do_plot',true);
+t2 = clock;
+delta_t = etime(t2, t1);
+
+Result = ['We have detected ',num2str(size(Korrespondenzen, 2)),...
+    ' correspongding pairs in ', num2str(delta_t), ' seconds' ];
+disp(Result);

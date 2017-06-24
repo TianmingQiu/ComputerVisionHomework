@@ -1,5 +1,5 @@
 close all; clear; clc;
-
+tic;
 Image1 = imread('szeneL.jpg');
 I1 = rgb_to_gray(Image1);
 
@@ -21,19 +21,11 @@ for i = 1 : size(Mpt1, 2)
 end
 Mpt1 = Mpt1(:, isNotEdge1);
 for i = 1 : sum(isNotEdge1)
-    
-   
-        
         I1_win = double(I1(Mpt1(2, i) - floor(window_length / 2) : ...
             Mpt1(2, i) + floor(window_length / 2), ...
             Mpt1(1, i) - floor(window_length / 2) : ...
             Mpt1(1, i) + floor(window_length / 2)));
-        W{i,1} = (I1_win-mean(I1_win(:))) / std(I1_win(:));
-        
-   
-    
-    
-    
+        W{i,1} = reshape((I1_win-mean(I1_win(:))) / std(I1_win(:)),[window_length.^2, 1]);
 end
 
 V =cell(1,1);
@@ -44,36 +36,26 @@ for i = 1 : size(Mpt2, 2)
         (Mpt2(1, i) < size(I2, 2) - floor(window_length / 2));
 end
 Mpt2 = Mpt2(:, isNotEdge2);
-for i = 1 : sum(isNotEdge2)
-    
-    
-        
+for i = 1 : sum(isNotEdge2)      
         I2_win = double(I2(Mpt2(2, i) - floor(window_length / 2) : ...
             Mpt2(2, i) + floor(window_length / 2), ...
             Mpt2(1, i) - floor(window_length / 2) : ...
             Mpt2(1, i) + floor(window_length / 2)));
-        V{i,1} = (I2_win-mean(I2_win(:))) / std(I2_win(:));
-        
-   
-    
-    
-    
+        V{i,1} = reshape((I2_win-mean(I2_win(:))) / std(I2_win(:)),[window_length.^2, 1]);
 end
 
 Ncc = [];
 Korrespondenzen = [];
-for i = 1:size(Mpt2, 2)
-    for j = 1:size(Mpt1, 2)
-        Ncc(i, j) = trace(W{j,1}' * V{i,1}) / (window_length .^ 2 - 1);
-        
-        
+for i = 1:size(Mpt1, 2)
+    for j = 1:size(Mpt2, 2)
+        Ncc(i, j) = trace(W{i,1}' * V{j,1}) / (window_length .^ 2 - 1);        
     end
     [NCC, idx] = max(Ncc(i, :));
     if NCC > min_corr
-        Korrespondenzen = [Korrespondenzen, [Mpt1(1 : 2, idx);Mpt2(1 : 2, i)]];
-        
+        Korrespondenzen = [Korrespondenzen, [Mpt1(1 : 2, i);Mpt2(1 : 2, idx)]];      
     end
 end
+
 
 
 if isplot
@@ -93,3 +75,4 @@ if isplot
     end
     hold off
 end
+toc;
