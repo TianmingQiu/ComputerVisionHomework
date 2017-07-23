@@ -2,7 +2,7 @@
 %  Gruppenmitglieder:
 
 %% Hausaufgabe 4
-%  Bestimmung der euklidischen Bewegung und der 3D Rekonstruktion aus einem Stereobildpaar. 
+%  Bestimmung der euklidischen Bewegung und der 3D Rekonstruktion aus einem Stereobildpaar.
 
 %  F?r die letztendliche Abgabe bitte die Kommentare in den folgenden Zeilen
 %  enfernen und sicherstellen, dass alle optionalen Parameter ?ber den
@@ -55,15 +55,18 @@ hold off
 %% Berechne die Essentielle Matrix
 load('K.mat');
 E = achtpunktalgorithmus(Korrespondenzen_robust,K);
+disp('Essential matrix =')
 disp(E);
 
 
 %% Extraktion der m?glichen euklidischen Bewegungen aus der Essentiellen Matrix und 3D-Rekonstruktion der Szene
 [T1,R1,T2,R2] = TR_aus_E(E);
+
 [T,R,lambdas,P1] = rekonstruktion(T1,T2,R1,R2,Korrespondenzen_robust,K);
-[T_ref,R_ref,lambdas_ref,P1_ref] = rekonstruktion_ref(T1,T2,R1,R2,Korrespondenzen_robust,K);
+
 
 %% Berechnung des mittleren R?ckprojektionsfehlers auf der Bildebene von Kamera 2
-% repro_error = rueckprojektion(Korrespondenzen_robust, P1, IGray2, T, R, K);
+repro_error = rueckprojektion(Korrespondenzen_robust, P1, IGray2, T, R, K);
+
 
 
